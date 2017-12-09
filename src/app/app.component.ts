@@ -23,7 +23,12 @@ export class AppComponent {
 	}
 
 	updateItem(course) {
-		debugger;
 		this.db.object('/courses/'+course.$key).set(course.$value +" Update");
+	}
+
+	deleteItem(course) {
+		this.db.object('/courses/' + course.$key).remove().then(
+			(response) => console.log('deleted')
+		)
 	}
 }
