@@ -8,8 +8,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class AppComponent {
 	course$;
+	singleCourse$;
 
 	constructor(db : AngularFireDatabase) {
 		this.course$ = db.list('/courses');
+		this.singleCourse$ = db.object('/courses/1');
 	}
 }
