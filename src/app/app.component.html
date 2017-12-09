@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let item of courses">
+  <li *ngFor="let item of course$ | async">
      {{item.$value}}
   </li>
 </ul>
