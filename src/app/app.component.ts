@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,23 @@ import { AngularFireDatabase } from 'angularfire2/database';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	course$;
+	course$ : FirebaseListObservable<any[]>;
 	singleCourse$;
 
-	constructor(db : AngularFireDatabase) {
+	constructor(private db : AngularFireDatabase) {
 		this.course$ = db.list('/courses');
 		this.singleCourse$ = db.object('/courses/1');
+	}
+
+	addItem( course : HTMLInputElement ) {
+		this.course$.push(course.value).then(function(){
+
+		})
+		course.value = '';
+	}
+
+	updateItem(course) {
+		debugger;
+		this.db.object('/courses/'+course.$key).set(course.$value +" Update");
 	}
 }

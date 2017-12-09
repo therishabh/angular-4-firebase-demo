@@ -1,6 +1,7 @@
+<input type="text" (keyup.enter)="addItem(course)" #course />
 <ul>
   <li *ngFor="let item of course$ | async">
-     {{item.$value}}
+     <button (click)="updateItem(item)">update</button> {{item.$value}}
   </li>
 </ul>
 <p>
